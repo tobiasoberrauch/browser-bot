@@ -1,8 +1,10 @@
 const puppeteer = require('puppeteer');
 
-puppeteer.launch().then(async browser => {
+puppeteer.launch({
+    devtools: true
+}).then(async browser => {
     const page = await browser.newPage();
-    await page.goto('https://www.google.com');
-    await page.screenshot({path: 'screenshot.png'});
-    await browser.close();
+    await page.goto('https://www.immobilienscout24.de/');
+    await page.type('.oss-location-container input', 'Tübingen');
+    await page.click('#oss-container button.oss-button.button-primary');
 });
